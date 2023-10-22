@@ -1,6 +1,6 @@
 ## Meli Items
 
-![melitems-diagram](https://github.com/conradogonzalezmarlon/melitems/assets/148028657/8fec225c-26c5-44e0-aec5-39e5ed193423)
+![melitems-diagram drawio](https://github.com/conradogonzalezmarlon/melitems/assets/148028657/c5da00a2-0450-4e3e-98ad-bd279fdb2b0e)
 
 
 ## Init databases
