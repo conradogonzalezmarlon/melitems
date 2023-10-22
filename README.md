@@ -1,6 +1,7 @@
 ## Meli Items
 
-How to run project localy
+![melitems-diagram](https://github.com/conradogonzalezmarlon/melitems/assets/148028657/8fec225c-26c5-44e0-aec5-39e5ed193423)
+
 
 ## Init databases
 -  docker-compose up
