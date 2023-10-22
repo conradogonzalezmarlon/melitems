@@ -1,19 +1,11 @@
-FROM node:18.17.1-alpine3.17
+FROM node:18.17.1-alpine3.17 as trasnpiledApi
+WORKDIR /usr/src/app
 
-COPY . /root/melitems/
+COPY package*.json ./
+RUN yarn
 
-WORKDIR /root/melitems/
-
-RUN yarn && \
-    yarn build
-
-
-FROM node:18.17.1-alpine3.17
-
-WORKDIR /root/melitems/
-
-COPY . /root/melitems/
+COPY . .
+RUN yarn build
 
 EXPOSE 3000
-
 ENTRYPOINT ["yarn", "start:prod"]
