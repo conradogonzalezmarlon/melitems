@@ -3,15 +3,42 @@
 ![melitems-diagram drawio](https://github.com/conradogonzalezmarlon/melitems/assets/148028657/c5da00a2-0450-4e3e-98ad-bd279fdb2b0e)
 
 
-## Init databases
--  docker-compose up
+## Databases
+
+You can find databases connections on .env.example file if you want to see database localy
 
 ## Start project
-- nest start:dev
+- `cd ./docker`
+- `docker-compose up`
 
 ## Endpoints
 
-- `/items`
+- `POST /items`
+
+```
+curl --location 'http://localhost:3000/items' \
+--form 'file=@"/path/to/file"' \
+--form 'separator="\\\\t"' \
+--form 'encoding="utf8"' \
+--form 'format="tsv"'
+```
+
+### Request
+
+```
+{
+    "file": File,
+    "separator": "," OR "." OR "-" OR "_" OR "\t",
+    "encoding": "ascii" OR "utf8" OR "utf-8" OR "base64" OR "hex",
+    "format": "csv" OR "tsv" OR "jsonl" OR "txt"
+}
+```
+
+### Response
+
+```
+    file.csv received successfully. Uploading items...
+```
 
 ```mermaid
 flowchart TD

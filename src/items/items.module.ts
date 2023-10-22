@@ -8,14 +8,15 @@ import { ITEMS_QUEUE } from '../common/constants';
 import { ItemsBatchConsumer } from './items-batch.consumer';
 import { MercadoLibreModule } from '../common/external';
 import { ItemsRepositoryProvider } from '../common/repositories';
+import 'dotenv/config';
 
 @Module({
   imports: [
     BullModule.registerQueue({
       name: ITEMS_QUEUE,
       redis: {
-        host: 'localhost',
-        port: 6379
+        host: process.env.REDIS_HOST,
+        port: +process.env.REDIS_PORT,
       }
     }),
     MercadoLibreModule

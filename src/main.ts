@@ -12,6 +12,8 @@ async function bootstrap() {
   await connectMongo();
 
   app.useGlobalPipes(new ValidationPipe())
-  await app.listen(3001);
+  await app.listen(3000);
+
+  console.log('App running on localhost:3000')
 }
 bootstrap();

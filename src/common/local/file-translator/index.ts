@@ -6,12 +6,8 @@ export class FileTranslation {
 }
 
 export class FileTranslatorInput {
-    separator: string;
+    separator?: string;
     encoding: BufferEncoding;
-}
-
-export interface FileTranslator {
-    translate(file: Buffer, cb: (lineTranslated: FileTranslation, index: number) => void): void;
 }
 
 export class FileTranslatorFactoryInput {
