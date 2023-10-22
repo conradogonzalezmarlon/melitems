@@ -1,14 +1,16 @@
 ## Meli Items
 
-### How to run project localy
+How to run project localy
 
-#### Init databases
+## Init databases
 -  docker-compose up
 
-#### Start project
+## Start project
 - nest start:dev
 
-#### Endpoints
+## Endpoints
+
+- `/items`
 
 ```mermaid
 flowchart TD

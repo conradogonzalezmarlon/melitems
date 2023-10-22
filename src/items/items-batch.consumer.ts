@@ -30,7 +30,6 @@ export class ItemsBatchConsumer {
 
     
     async saveOneItem(data: FileTranslation): Promise<void> {
-        console.log(data);
         const now = new Date();
         try {
             const item = await this.itemsExternal.getById({
