@@ -1,24 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { UploadItemDto } from '../common/dto';
-import { FileTranslation, FileTranslatorFactory } from '../common/local';
-import { InjectQueue } from '@nestjs/bull'
-import { ITEMS_QUEUE } from '../common/constants';
-import { Queue } from 'bull';
+import {
+  FileTranslation,
+  FileTranslatorFactory,
+  QueueLocal,
+} from '../common/local';
+import { BATCH_ITEMS_NUM } from '../common/constants';
 
 @Injectable()
 export class ItemsService {
   constructor(
-    private readonly fileTranslatorFactory: FileTranslatorFactory,
-    @InjectQueue(ITEMS_QUEUE) private itemsQueue: Queue
+    private fileTranslatorFactory: FileTranslatorFactory,
+    private queueLocal: QueueLocal,
   ) {}
 
-  async uploadItems(file: Express.Multer.File, data: UploadItemDto): Promise<string> {
+  async uploadItems(
+    file: Express.Multer.File,
+    data: UploadItemDto,
+  ): Promise<string> {
     let batchLinesTranslated: FileTranslation[] = [];
 
     const sendLine = (lineTranslated: FileTranslation, index: number) => {
       // last event
       if (index === -1) {
-        this.itemsQueue.add(batchLinesTranslated);
+        this.queueLocal.add(batchLinesTranslated);
         return;
       }
 
@@ -28,15 +33,13 @@ export class ItemsService {
 
       batchLinesTranslated.push(lineTranslated);
 
-      if (batchLinesTranslated.length === 5) {
-        this.itemsQueue.add([...batchLinesTranslated])
+      if (batchLinesTranslated.length === BATCH_ITEMS_NUM) {
+        this.queueLocal.add([...batchLinesTranslated]);
         batchLinesTranslated = [];
       }
-    }
+    };
 
-    this.fileTranslatorFactory
-      .get(data)
-      .translate(file.buffer, sendLine)
+    this.fileTranslatorFactory.get(data).translate(file.buffer, sendLine);
 
     return `${file.originalname} received successfully. Uploading items...`;
   }
