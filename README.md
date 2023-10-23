@@ -3,50 +3,8 @@
 ![melitems-diagram drawio](https://github.com/conradogonzalezmarlon/melitems/assets/148028657/c5da00a2-0450-4e3e-98ad-bd279fdb2b0e)
 
 
-## Databases
-
-You can find databases connections on .env.example file if you want to see database localy
-
-### Example items on database when FAILED
-
-```
-{
-  "id": "655915616",
-  "site": "MLA",
-  "metadata": {
-    "error": {
-      "message": "Item with id MLA655915616 not found",
-      "error": "not_found",
-      "status": 404,
-      "cause": []
-    }
-  },
-  "status": "FAILED",
-  "created_at": {
-    "$date": "2023-10-22T05:46:02.588Z"
-  }
-}
-```
-
-### Example item when APPROVED
-
-```
-{
-  "price": 110716,
-  "start_time": "2019-11-04T03:45:50.000Z",
-  "name": "Libros Físicos",
-  "description": "Peso argentino",
-  "nickname": "LIBERATE_ARG",
-  "id": "823408605",
-  "site": "MLA",
-  "status": "APPROVED",
-  "created_at": {
-    "$date": "2023-10-22T05:46:02.601Z"
-  }
-}
-```
-
 ## Start project
+- Create `.env` file
 - `cd ./docker`
 - `docker-compose up`
 
@@ -101,4 +59,47 @@ flowchart TD
     O --> |no| Q[Save items with error metadata]
     P --> FINISH
     Q --> FINISH
+```
+
+## Databases
+
+You can find databases connections on .env.example file if you want to see database localy
+
+### Example items on database when FAILED
+
+```
+{
+  "id": "655915616",
+  "site": "MLA",
+  "metadata": {
+    "error": {
+      "message": "Item with id MLA655915616 not found",
+      "error": "not_found",
+      "status": 404,
+      "cause": []
+    }
+  },
+  "status": "FAILED",
+  "created_at": {
+    "$date": "2023-10-22T05:46:02.588Z"
+  }
+}
+```
+
+### Example items on database when APPROVED
+
+```
+{
+  "price": 110716,
+  "start_time": "2019-11-04T03:45:50.000Z",
+  "name": "Libros Físicos",
+  "description": "Peso argentino",
+  "nickname": "LIBERATE_ARG",
+  "id": "823408605",
+  "site": "MLA",
+  "status": "APPROVED",
+  "created_at": {
+    "$date": "2023-10-22T05:46:02.601Z"
+  }
+}
 ```
